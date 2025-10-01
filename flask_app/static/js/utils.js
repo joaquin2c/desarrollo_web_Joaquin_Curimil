@@ -61,21 +61,13 @@ const zoomImg = (img) => {
   document.getElementById("row-data-container").hidden = true;
   document.getElementById("row-data-container").style.display = "none";
   if (img.src.split('/').pop()=="Dracula.jpeg"){
-    let audio = new Audio('../src/Dracula.mp3');
+    let audio = new Audio('static/uploads/Dracula.mp3');
     audio.play();
   }
 
 }
 
 
-const btnUnzoomImg = () => {
-  document.getElementById("foto-btn-foto-container").hidden = true;
-  document.getElementById("foto-btn-foto-container").style.display = "none";
-  document.getElementById("body-list").style.backgroundColor = "#f4f4f4";
-  document.getElementById("row-data-container").hidden = false;
-  document.getElementById("row-data-container").style.display = "flex";
-  
-}
 
 const listRowOpen = (row) => {
   const row_info=getInfoRow(row);
@@ -94,6 +86,21 @@ const listRowOpen = (row) => {
 };
 
 
-const goToIndex =() => {
-  window.location.assign("../html/index.html")
+const btnUnzoomImg = (id) => {
+  window.location.href = `/listado/${id}`; 
+  
 }
+
+
+const goToIndex =() => {
+  window.location.assign("/")
+}
+
+const goToAviso =(id) => {
+        window.location.href = `/listado/${id}`; 
+    }
+
+const goToImg =(id) => {
+        window.location.href = `/listado/${id}/imgs?id=0`;
+  }
+    

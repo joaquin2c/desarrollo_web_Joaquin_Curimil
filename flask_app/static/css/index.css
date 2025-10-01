@@ -1,4 +1,4 @@
-body {
+#body-list {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
 }
@@ -95,7 +95,7 @@ thead {
 }
 
 #row-data-container {
-    display: none;
+    display: flex;
     justify-content: center;
 }
 
@@ -120,7 +120,8 @@ thead {
 }
 
 #foto-btn-foto-container {
-    display: none;
+    display: grid;
+    background-color : rgb(0, 0, 0);
 }
 
 
@@ -154,4 +155,15 @@ thead {
     font-family: Arial, sans-serif;
     background-color: white;
 
+}
+
+.container_foto {
+    height: auto;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+}
+
+#img_back{
+    background-color: black;
 }

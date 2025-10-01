@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %} Adopte hoy!! {% endblock %}
+{% block css %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static', filename='css/index.css')}}"
+/>
+{% endblock %}
+{% block content %}    
+
+{% if data_aviso %}
+<div id="row-data-container">
+    <div id="list_row">
+        <h1 class="intro">Información de adopción</h1>
+        <div class="tableBack">
+            <table id="info-adop" >
+                <tr><td class="bold">Fecha publicación :</td> <td>{{data_aviso.fecha_ingreso}}</td></tr>
+                <tr><td class="bold">Fecha entrega: </td> <td>{{data_aviso.fecha_entrega}} </td></tr>
+                <tr><td class="bold">Comuna : </td> <td>{{data_aviso.comuna}}</td></tr>
+                <tr><td class="bold">Sector : </td> <td>{{data_aviso.sector}}</td></tr>
+                <tr><td class="bold">Cantidad tipo edad : </td> <td>{{data_aviso.cantidad}} {{data_aviso.tipo}} {{data_aviso.edad}} {{data_aviso.unidad_medida}}</td></tr>
+                <tr><td class="bold">Nombre de contacto : </td> <td>{{data_aviso.nombre}}</td></tr>
+                <tr><td class="bold">Email : </td> <td>{{data_aviso.email}}</td></tr>
+                <tr><td class="bold">Celular : </td> <td>{{data_aviso.celular}}</td></tr>
+                <tr><td class="bold">Descripcion : </td> <td>{{data_aviso.descripcion}}</td></tr>
+                <tr><td class="bold">Fotos : </td><td><img class="imgs-index" id="tot-foto" src="../{{data_aviso.ruta_archivo}}/mini/{{data_aviso.nombre_archivo}}" onclick="goToImg('{{ data_aviso.id }}')" alt="imgMascota"></td></tr>
+            </table>
+        </div>
+
+        <div class="navbar" id="navbar_row">
+            <a class="navbar-page" href="/listado.html">Volver a listado</a>
+            <a class="navbar-page" href="/">Volver a la portada</a>
+        </div>
+    </div>
+</div> 
+{% endif %}
+
+{% endblock %}
+{% block javascript %}
+<script lang="javascript" src="{{ url_for('static', filename='js/utils.js') }}"></script>
+{% endblock %}

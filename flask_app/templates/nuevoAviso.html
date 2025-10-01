@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+{% block title %} Adopte hoy!! {% endblock %}
+{% block css %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static', filename='css/nuevoAviso.css')}}"
+/>
+{% endblock %} 
+
+{% block content %}    
+<div class="main-container">
+  <div id="intro">
+    <p id="bajada">Ingresa información de adopción</p>
+  </div>
+  <div id="val-box" hidden>
+    <h2 id="val-msg">valmsg </h2>
+    <ul id="val-list"> </ul> 
+  </div>
+  <div id="send-box" hidden>
+      <h2>Hemos recibido la información de adopción, muchas gracias y suerte!</h2>
+      <a id=send-btn href="index.html">Volver a portada</a>
+  </div>
+  <form name="formulario" class="formulario" action="create_aviso" method="post"> 
+    <div class="sub-form">        
+      <div class="sub-intro">       
+        <p>Información del lugar de entrega:</p>
+      </div>   
+
+      <label for="region">Región *</label>
+      <select name="region" id="region" required>
+          <option value="">--Seleccione una Región--</option>
+      </select>
+
+      <label for="comuna">Comuna *</label>
+      <select name="comuna" id="comuna" required>
+          <option value="">--Seleccione una Comuna--</option>
+      </select>
+      
+      <label for="sector">Sector</label>
+      <input type="text" name="sector" id="sector" maxlength="100" >
+
+    </div>
+
+    <div class="sub-form">          
+      <div class="sub-intro">
+        <p>Datos del contacto:</p>
+      </div>
+      
+      <label for="nombre">Nombre *</label>
+      <input type="text" name="nombre" id="nombre" minlength="3" maxlength="200" required>
+
+      <label>Email *</label>
+      <input type="email" name="email" id="email" maxlength="100" required>
+      
+      <label>Número de celular</label>
+      <input type="tel" name="celular" id="celular" minlength="8">
+      
+
+      <div id="div-contacts">
+        <div id="div-contact1" >
+        <label>Contactar por *</label>
+        <select name="select-contact1" id="select-contact1" required>
+          <option value="">Ninguna</option>
+          <option value="whatsapp">Whatsapp</option>
+          <option value="telegram">Telegram</option>
+          <option value="x">X</option>
+          <option value="tiktok">TikTok</option>
+          <option value="otra">Telegram</option>
+        </select>
+        <input class="hidden_input" id="contact1" minlength="4" maxlength="50">
+        </div>
+
+        <div class="hidden_div" id="div-contact2">
+        <label>Contactar por:</label>
+        <select name="select-contact2" id="select-contact2">
+          <option value="">Ninguna</option>
+          <option value="whatsapp">Whatsapp</option>
+          <option value="telegram">Telegram</option>
+          <option value="x">X</option>
+          <option value="tiktok">TikTok</option>
+          <option value="otra">Telegram</option>
+        </select>
+        <input class="hidden_input" id="contact2" minlength="4" maxlength="50">
+        </div>
+
+        <div class="hidden_div" id="div-contact3">
+        <label>Contactar por:</label>
+        <select name="select-contact3" id="select-contact3">
+          <option value="">Ninguna</option>
+          <option value="whatsapp">Whatsapp</option>
+          <option value="telegram">Telegram</option>
+          <option value="x">X</option>
+          <option value="tiktok">TikTok</option>
+          <option value="otra">Telegram</option>
+        </select>
+        <input class="hidden_input" id="contact3" minlength="4" maxlength="50">
+        </div>
+
+        <div class="hidden_div" id="div-contact4">
+        <label>Contactar por:</label>
+        <select name="select-contact4" id="select-contact4">
+          <option value="">Ninguna</option>
+          <option value="whatsapp">Whatsapp</option>
+          <option value="telegram">Telegram</option>
+          <option value="x">X</option>
+          <option value="tiktok">TikTok</option>
+          <option value="otra">Telegram</option>
+        </select>
+        <input class="hidden_input" id="contact4" minlength="4" maxlength="50">
+        </div>
+
+        <div class="hidden_div" id="div-contact5">
+        <label>Contactar por:</label>
+        <select name="select-contact5" id="select-contact5">
+          <option value="">Ninguna</option>
+          <option value="whatsapp">Whatsapp</option>
+          <option value="telegram">Telegram</option>
+          <option value="x">X</option>
+          <option value="tiktok">TikTok</option>
+          <option value="otra">Telegram</option>
+        </select>
+        <input class="hidden_input" id="contact5" minlength="4" maxlength="50">
+        </div>
+      </div>
+
+
+      <button id="add-contact-btn"  type="button">
+        Agregar Contacto
+      </button>
+        
+    </div>
+
+    <div class="sub-form">          
+      <div class="sub-intro">
+        <p>Información del animal en adopción:</p>
+      </div>
+
+        <label>Tipo *</label>
+        <select name="tipo" id="tipo" required>
+          <option value="">--Seleccione un tipo--</option>
+          <option value="gato">Gato</option>
+          <option value="perro">Perro</option>
+        </select>
+        
+        <label>Cantidad *</label>
+        <input type="number" name="cantidad" id="cantidad" min=1 required>
+        
+        <label>Edad *</label>
+        <input type="number" name="edad" id="edad" min="1" required>
+        
+        <label>Unidad medida edad *</label>
+        <select name="unidad" id="unidad" required>
+          <option value="">--Seleccione una unidad--</option>
+          <option value="month">Meses</option>
+          <option value="year">Años</option>
+        </select>
+        
+        <label>Fecha disponible para entrega *</label>
+        <input type="datetime-local" name="fecha" id="fecha" required>
+        
+        <label for="descripcion">Descripción</label>
+        <textarea name="descripcion" id="descripcion" rows="10" cols="50"></textarea>
+        
+        <label>Foto *</label>
+        <input type="file" name="foto1" id="foto1" accept="image/*,.pdf" required>
+        
+        <div class="hidden_div" id="div-foto2">
+        <label>Segunda Foto (opcional)</label>
+        <input type="file" name="foto2" id="foto2" accept="image/*,.pdf" >
+        </div>
+        
+        <div class="hidden_div" id="div-foto3">
+        <label>Tercera Foto (opcional)</label>
+        <input type="file" name="foto3" id="foto3" accept="image/*,.pdf" >
+        </div>
+        
+        <div class="hidden_div" id="div-foto4">
+        <label>Cuarta Foto (opcional)</label>
+        <input type="file" name="foto4" id="foto4" accept="image/*,.pdf" >
+        </div>
+        
+        <div class="hidden_div" id="div-foto5">
+        <label>Ultima Foto (opcional)</label>
+        <input type="file" name="foto5" id="foto5" accept="image/*,.pdf" >
+        </div>
+
+        <button id="add-foto-btn"  type="button">
+          Agregar otra foto
+        </button>
+
+        
+    </div>
+
+    <div class="botones">
+      <button id="volver" class="boton" type="button">
+        Volver a la portada
+      </button>
+      <button id="submit-btn" class="boton"  type="button">
+        Publicar Aviso
+      </button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}
+{% block javascript %}
+<script lang="javascript" src="{{ url_for('static', filename='js/utils.js') }}"></script> 
+<script lang="javascript" src="{{ url_for('static', filename='js/validation.js') }}"></script> 
+<script lang="javascript" src="{{ url_for('static', filename='js/select.js') }}"></script> 
+{% endblock %}

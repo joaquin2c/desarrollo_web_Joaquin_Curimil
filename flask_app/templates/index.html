@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %} Adopte hoy!! {% endblock %}
+{% block css %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static', filename='css/index.css')}}"
+/>
+{% endblock %}
+
+{% block content %}    
+<h1 class="intro">Bienvenido a nuestra pagina de adopción, elija una opción:</h1>
+<div class="navbar">
+    <a class="navbar-page" href="./nuevoAviso.html">Agregar Aviso</a>
+    <a class="navbar-page" href="/listado.html">Ver listado de adopciones</a>
+    <a class="navbar-page" href="/estadistica.html">Estadisticas</a>
+</div>
+<div class="tableBack">
+  <table id="tableIndex" >
+    <thead>
+      <tr>
+        <th>Fecha publicación</th>
+        <th>Comuna</th>
+        <th>Sector</th>
+        <th>Cantidad Tipo edad</th>
+        <th>Foto</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if data %}
+          {% for conf in data%}
+            <tr>
+              <td>{{conf.fecha_ingreso}}</td>
+              <td>{{conf.comuna}}</td>
+              <td>{{conf.sector}}</td>
+              <td>{{conf.cantidad}} {{conf.tipo}}<br> {{conf.edad}} {{conf.unidad_medida}}</td>
+              <td class="imgs-index-td"><img class="imgs-index" src="{{conf.path_img}}" alt="Placeholder Image" ></td>
+            </tr>
+          {% endfor%}
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
+{% block javascript %}
+<!-- <script lang="javascript" src="{{ url_for('static', filename='js/login.js') }}"></script> -->
+{% endblock %}
