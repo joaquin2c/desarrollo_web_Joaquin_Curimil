@@ -19,9 +19,9 @@
   </div>
   <div id="send-box" hidden>
       <h2>Hemos recibido la información de adopción, muchas gracias y suerte!</h2>
-      <a id=send-btn href="index.html">Volver a portada</a>
+      <a id=send-btn href="/index.html">Volver a portada</a>
   </div>
-  <form name="formulario" class="formulario" action="create_aviso" method="post"> 
+  <form id="new_aviso" name="formulario" class="formulario" action="nuevoAviso" method="post" enctype="multipart/form-data"> 
     <div class="sub-form">        
       <div class="sub-intro">       
         <p>Información del lugar de entrega:</p>
@@ -68,7 +68,7 @@
           <option value="tiktok">TikTok</option>
           <option value="otra">Telegram</option>
         </select>
-        <input class="hidden_input" id="contact1" minlength="4" maxlength="50">
+        <input class="hidden_input" id="contact1" name="contact1" minlength="4" maxlength="50">
         </div>
 
         <div class="hidden_div" id="div-contact2">
@@ -81,7 +81,7 @@
           <option value="tiktok">TikTok</option>
           <option value="otra">Telegram</option>
         </select>
-        <input class="hidden_input" id="contact2" minlength="4" maxlength="50">
+        <input class="hidden_input" id="contact2" name="contact2" minlength="4" maxlength="50">
         </div>
 
         <div class="hidden_div" id="div-contact3">
@@ -94,7 +94,7 @@
           <option value="tiktok">TikTok</option>
           <option value="otra">Telegram</option>
         </select>
-        <input class="hidden_input" id="contact3" minlength="4" maxlength="50">
+        <input class="hidden_input" id="contact3"  name="contact3" minlength="4" maxlength="50">
         </div>
 
         <div class="hidden_div" id="div-contact4">
@@ -107,7 +107,7 @@
           <option value="tiktok">TikTok</option>
           <option value="otra">Telegram</option>
         </select>
-        <input class="hidden_input" id="contact4" minlength="4" maxlength="50">
+        <input class="hidden_input" id="contact4"  name="contact4"  minlength="4" maxlength="50">
         </div>
 
         <div class="hidden_div" id="div-contact5">
@@ -120,7 +120,7 @@
           <option value="tiktok">TikTok</option>
           <option value="otra">Telegram</option>
         </select>
-        <input class="hidden_input" id="contact5" minlength="4" maxlength="50">
+        <input class="hidden_input" id="contact5"  name="contact5" minlength="4" maxlength="50">
         </div>
       </div>
 
@@ -163,26 +163,26 @@
         <textarea name="descripcion" id="descripcion" rows="10" cols="50"></textarea>
         
         <label>Foto *</label>
-        <input type="file" name="foto1" id="foto1" accept="image/*,.pdf" required>
+        <input type="file" name="foto1" id="foto1" accept="image/*" required>
         
         <div class="hidden_div" id="div-foto2">
         <label>Segunda Foto (opcional)</label>
-        <input type="file" name="foto2" id="foto2" accept="image/*,.pdf" >
+        <input type="file" name="foto2" id="foto2" accept="image/*" >
         </div>
         
         <div class="hidden_div" id="div-foto3">
         <label>Tercera Foto (opcional)</label>
-        <input type="file" name="foto3" id="foto3" accept="image/*,.pdf" >
+        <input type="file" name="foto3" id="foto3" accept="image/*" >
         </div>
         
         <div class="hidden_div" id="div-foto4">
         <label>Cuarta Foto (opcional)</label>
-        <input type="file" name="foto4" id="foto4" accept="image/*,.pdf" >
+        <input type="file" name="foto4" id="foto4" accept="image/*" >
         </div>
         
         <div class="hidden_div" id="div-foto5">
         <label>Ultima Foto (opcional)</label>
-        <input type="file" name="foto5" id="foto5" accept="image/*,.pdf" >
+        <input type="file" name="foto5" id="foto5" accept="image/*" >
         </div>
 
         <button id="add-foto-btn"  type="button">

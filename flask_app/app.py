@@ -1,10 +1,11 @@
 from flask import Flask, request, render_template, redirect, url_for, session
-from utils.validations import validate_login_user, validate_register_user, validate_confession
+from utils.validations import validate_aviso
 from database import db, models
 from werkzeug.utils import secure_filename
 import hashlib
 import filetype
 import os
+import datetime
 
 UPLOAD_FOLDER = 'static/uploads'
 
@@ -15,50 +16,63 @@ app.secret_key = "s3cr3t_k3y"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # app.config['MAX_CONTENT_LENGTH'] = 16 * 1000 * 1000
 
-@app.route("/post-aviso", methods=["POST"])
+@app.route("/nuevoAviso", methods=["GET","POST"])
 def post_aviso():
+    
+    if request.method == "POST":
+        error = ""
+        info_data={
+            "fecha_ingreso":datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "comuna": request.form.get("comuna"),
+            "region": request.form.get("region"),
+            "sector": request.form.get("sector"),
+            "nombre": request.form.get("nombre"),
+            "email": request.form.get("email"),
+            "celular": request.form.get("celular"),
+            "tipo": request.form.get("tipo"),
+            "cantidad": request.form.get("cantidad"),
+            "edad": request.form.get("edad"),
+            "unidad_medida": request.form.get("unidad"),
+            "fecha_entrega": request.form.get("fecha"),
+            "descripcion": request.form.get("descripcion"),
+            "fotos": [request.files.get(f"foto{i}") for i in range(1,6) ],
+            "select_contactos": [request.form.get(f"select-contact{i}") for i in range(1,6) ],
+            "contactos": [request.form.get(f"contact{i}") for i in range(1,6) ]
+        }
+        error=validate_aviso(info_data)
+        if not error:
+            save_in_db(info_data)# Coumna id desde el de comuna?
+            return redirect(url_for("index"))
+        info_data["error"]=error
+        return render_template("nuevoAviso.html", data=info_data)
+  
+    elif request.method == "GET":
+        info_data={}
+        return render_template("nuevoAviso.html",data=info_data)
 
-    fecha_ingreso = Column(DateTime, nullable=False)
-    #comunda_id = Column(Integer, nullable=False)
-    #comuna = request.form.get("comuna")
-    sector = request.form.get("sector")
-    nombre = request.form.get("nombre")
-    email = request.form.get("email")
-    celular = request.form.get("celular")
-    tipo = request.form.get("tipo")
-    cantidad = request.form.get("cantidad")
-    edad = request.form.get("edad")
-    unidad_medida = request.form.get("unidad")
-    fecha_entrega = request.form.get("fecha")
-    descripcion = request.form.get("descripcion")
 
-    fotos=[request.file.get(f"foto{i}") for i in range(1,6) ]
-    select_contactos=[request.form.get(f"select-contact{i}") for i in range(1,6) ]
-    contactos=[request.form.get(f"contact{i}") for i in range(1,6) ]
+def save_in_db(data):
+    """
+    id_aviso=db.create_aviso(info_data)
+    for image in fotos:
+        # 1. generate random name for img
+        _filename = hashlib.sha256(
+            secure_filename(image.filename) # nombre del archivo
+            .encode("utf-8") # encodear a bytes
+            ).hexdigest()
+        _extension = filetype.guess(image).extension
+        img_filename = f"{_filename}.{_extension}"
 
-    if validate_aviso(comuna, sector,nombre,email,celular,tipo,cantidad,edad,unidad_medida,fecha_entrega,descripcion,fotos,contactos):
-        
-        # Coumna id desde el de comuna?
-        fecha_ingreso=DateTime()  #Fecha en formato pedido
-        id_aviso=db.create_aviso(fecha_ingreso,comuna, sector,nombre,email,celular,tipo,cantidad,edad,unidad_medida,fecha_entrega,descripcion)
-        for image in fotos:
-            # 1. generate random name for img
-            _filename = hashlib.sha256(
-                secure_filename(image.filename) # nombre del archivo
-                .encode("utf-8") # encodear a bytes
-                ).hexdigest()
-            _extension = filetype.guess(image).extension
-            img_filename = f"{_filename}.{_extension}"
+        # 2. save img as a file
+        image.save(os.path.join(app.config["UPLOAD_FOLDER"], img_file
 
-            # 2. save img as a file
-            image.save(os.path.join(app.config["UPLOAD_FOLDER"], img_filename))
+        # 3. save confession in db
+        db.create_foto(app.config["UPLOAD_FOLDER"], img_filename, id_aviso)
 
-            # 3. save confession in db
-            db.create_foto(app.config["UPLOAD_FOLDER"], img_filename, id_aviso)
-
-        for i in range(5):
-            db.create_contactar_por(select_contactos[i], contactos[i], id_aviso)
-    return redirect(url_for("index"))
+    for i in range(5):
+        db.create_contactar_por(select_contactos[i], contactos[i], id_aviso)
+    """
+    return False
 
 @app.route("/post-conf", methods=["POST"])
 def post_conf():
@@ -184,20 +198,40 @@ def fotos(id):
       return redirect(url_for("listado")) 
     elif len(info_fotos)<=id_img:
       return redirect(f"/listado/{id}/imgs?id=0")
+    elif id_img<0:
+      return redirect(f"/listado/{id}/imgs?id={len(info_fotos)-1}")
 
     nombre_archivo=info_fotos[id_img].nombre_archivo 
     ruta_archivo=info_fotos[id_img].ruta_archivo
-
+    
     data_foto={
         "ruta_archivo":ruta_archivo,
         "nombre_archivo":nombre_archivo,
-        "id_aviso":id
+        "id_aviso":id,
+        "cant_imgs":len(info_fotos),
+        "id_img":id_img
     }
+
     return render_template('zoomImg.html', data_foto=data_foto)
 
 @app.route('/estadistica.html', methods=["GET"])
 def estadisticas():
     return render_template(f"estadistica.html")
 
+@app.route('/nuevoAviso.html', methods=["GET","POST"])
+def nuevoAviso():
+    return render_template("nuevoAviso.html")
+
+
 if __name__ == "__main__":
     app.run(debug=True)
+    """
+    from PIL import Image
+    path_img="./static/uploads/normal/"
+    path_med="./static/uploads/medium/"
+    path_mini="./static/uploads/mini/"
+    for i in os.listdir(path_img):
+        img_ori=Image.open(path_img+i)
+        img_ori.resize((800,600)).save(path_med+i)
+        img_ori.resize((320,240)).save(path_mini+i)
+    """

@@ -218,7 +218,7 @@ const validateForm = () => {
   if (!validateRequiredFoto(fotoInput1)) {
     setInvalidInput("Foto");
   }  
-  if (!validateOptionalFoto([fotoInput2,fotoInput4,fotoInput5,fotoInput5])) {
+  if (!validateOptionalFoto([fotoInput2,fotoInput3,fotoInput4,fotoInput5])) {
     setInvalidInput("Foto Opcionales");
   }  
 
@@ -245,6 +245,7 @@ const validateForm = () => {
     // hacer visible el mensaje de validación
     validationBox.hidden = false;
   } else {
+    /*
     // Ocultar el formulario
     myForm.style.display = "none";
 
@@ -263,9 +264,7 @@ const validateForm = () => {
     submitButton.addEventListener("click", () => {
       validationBox.hidden = true;
       document.getElementById("send-box").hidden = false;
-      document.getElementById("intro").hidden = true;
-      // myForm.submit();
-      // no tenemos un backend al cual enviarle los datos
+      document.getElementById("intro").hidden = true; 
     });
 
     let backButton = document.createElement("button");
@@ -281,6 +280,10 @@ const validateForm = () => {
 
     // hacer visible el mensaje de validación
     validationBox.hidden = false;
+    */   
+    let loginForm = document.getElementById("new_aviso");
+    loginForm.submit();
+
   }
 };
 

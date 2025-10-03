@@ -100,7 +100,8 @@ const goToAviso =(id) => {
         window.location.href = `/listado/${id}`; 
     }
 
-const goToImg =(id) => {
-        window.location.href = `/listado/${id}/imgs?id=0`;
+const goToImg =(id_aviso, id_img) => {
+        window.location.href = `/listado/${id_aviso}/imgs?id=${id_img}`;
   }
+
     

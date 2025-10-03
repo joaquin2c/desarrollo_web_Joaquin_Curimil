@@ -70,7 +70,6 @@ thead {
 }
 
 
-
 .row_list {
     cursor: pointer;
 }
@@ -125,11 +124,6 @@ thead {
 }
 
 
-#img-zoom {
-    width: 800px;
-    height: 600px;
-}
-
 
 .botones{
   display: flex;
@@ -166,4 +160,58 @@ thead {
 
 #img_back{
     background-color: black;
+}
+
+.intro_return {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+.counter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:  rgb(10, 10, 10);
+    background:rgb(255, 255, 255);
+    height: auto;
+    margin: .25em auto ;
+    padding: 0.25em .5em;
+    font-weight: 550;
+    font-size: 1.2rem;
+}
+
+
+#foto-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.move_img_btn{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: 2em;
+  color:  rgb(35, 31, 31);
+  background:rgb(125, 113, 113);
+  border: .15em solid rgb(98, 87, 87);
+  border-radius: .4em;
+  padding: .25em;
+  font-weight: 550;
+  font-size: 1.2rem;
+  cursor: pointer;
+  
+}
+
+#extra_imgs{
+  font-size: 15; 
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  background-color: rgb(147, 131, 131);
+  padding: .25em;
+  cursor: pointer;
 }
