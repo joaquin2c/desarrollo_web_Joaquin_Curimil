@@ -87,7 +87,7 @@ const listRowOpen = (row) => {
 
 
 const btnUnzoomImg = (id) => {
-  window.location.href = `/listado/${id}`; 
+  window.location.href = `/listado/aviso/${id}`; 
   
 }
 
@@ -97,11 +97,17 @@ const goToIndex =() => {
 }
 
 const goToAviso =(id) => {
-        window.location.href = `/listado/${id}`; 
+        window.location.href = `/listado/aviso/${id}`; 
     }
 
 const goToImg =(id_aviso, id_img) => {
-        window.location.href = `/listado/${id_aviso}/imgs?id=${id_img}`;
+        window.location.href = `/listado/aviso/${id_aviso}/imgs?id=${id_img}`;
   }
 
-    
+const ChangePageList =(page,all_pages) => {
+        if (page < 1 || page>all_pages){
+          return;
+        }
+        window.location.href = `/listado/?page=${page}`;
+  }    
+

@@ -19,7 +19,7 @@
   </div>
   <div id="send-box" hidden>
       <h2>Hemos recibido la información de adopción, muchas gracias y suerte!</h2>
-      <a id=send-btn href="/index.html">Volver a portada</a>
+      <a id=send-btn href="{{ url_for('index') }}">Volver a portada</a>
   </div>
   <form id="new_aviso" name="formulario" class="formulario" action="nuevoAviso" method="post" enctype="multipart/form-data"> 
     <div class="sub-form">        
@@ -152,8 +152,8 @@
         <label>Unidad medida edad *</label>
         <select name="unidad" id="unidad" required>
           <option value="">--Seleccione una unidad--</option>
-          <option value="month">Meses</option>
-          <option value="year">Años</option>
+          <option value="m">Meses</option>
+          <option value="a">Años</option>
         </select>
         
         <label>Fecha disponible para entrega *</label>
@@ -205,7 +205,7 @@
 
 {% endblock %}
 {% block javascript %}
-<script lang="javascript" src="{{ url_for('static', filename='js/utils.js') }}"></script> 
-<script lang="javascript" src="{{ url_for('static', filename='js/validation.js') }}"></script> 
-<script lang="javascript" src="{{ url_for('static', filename='js/select.js') }}"></script> 
+<script src="{{ url_for('static', filename='js/utils.js') }}"></script> 
+<script src="{{ url_for('static', filename='js/validation.js') }}"></script> 
+<script src="{{ url_for('static', filename='js/select.js') }}"></script> 
 {% endblock %}

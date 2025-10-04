@@ -49,7 +49,7 @@ class Foto(Base):
     id = Column(BigInteger, primary_key=True, autoincrement=True)
     ruta_archivo = Column(String(300), nullable=False)
     nombre_archivo = Column(String(300), nullable=False)
-    actividad_id = Column(BigInteger, ForeignKey('usuario.id'), nullable=False)
+    aviso_id = Column(BigInteger, ForeignKey('aviso_adopcion.id'), nullable=False)
 
 
 
@@ -57,6 +57,6 @@ class ContactarPor(Base):
     __tablename__ = 'contactar_por'
 
     id = Column(BigInteger, primary_key=True, autoincrement=True)
-    nombre = Column(Enum, nullable=False)
+    nombre = Column(Enum('whatsapp','telegram','X','instagram','tiktok','otra'), nullable=False)
     identificador = Column(String(150), nullable=False)
-    actividad_id = Column(BigInteger, ForeignKey('usuario.id'), nullable=False)
+    aviso_id = Column(BigInteger, ForeignKey('aviso_adopcion.id'), nullable=False)

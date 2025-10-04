@@ -245,7 +245,6 @@ const validateForm = () => {
     // hacer visible el mensaje de validación
     validationBox.hidden = false;
   } else {
-    /*
     // Ocultar el formulario
     myForm.style.display = "none";
 
@@ -265,6 +264,9 @@ const validateForm = () => {
       validationBox.hidden = true;
       document.getElementById("send-box").hidden = false;
       document.getElementById("intro").hidden = true; 
+      let loginForm = document.getElementById("new_aviso");
+      loginForm.submit();
+
     });
 
     let backButton = document.createElement("button");
@@ -280,10 +282,6 @@ const validateForm = () => {
 
     // hacer visible el mensaje de validación
     validationBox.hidden = false;
-    */   
-    let loginForm = document.getElementById("new_aviso");
-    loginForm.submit();
-
   }
 };
 

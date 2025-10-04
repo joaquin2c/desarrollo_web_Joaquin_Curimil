@@ -26,8 +26,8 @@
             </tr>
             </thead>
             <tbody>
-            {% if data %}
-                {% for conf in data%}
+            {% if all_info.data %}
+                {% for conf in all_info.data%}
                 <tr class="row_list" onclick="goToAviso('{{ conf.id }}')">
                     <td>{{conf.fecha_ingreso}}</td>
                     <td>{{conf.fecha_entrega}}</td>
@@ -43,6 +43,16 @@
         </table>
         </div>
         <div class="botones">
+                <button class="move_img_btn" type="button" onclick="ChangePageList('{{ all_info.page_num-1 }}','{{ all_info.size_db }}')">
+                Prev
+                </button>
+                       
+            <span class="counter_list"> {{all_info.page_num}} / {{all_info.size_db}} </span>
+            <button class="move_img_btn" type="button" onclick="ChangePageList('{{ all_info.page_num+1}}','{{ all_info.size_db}}')">
+                Next
+            </button>
+        </div>
+        <div class="botones">
             <button id="volver-list" class="boton" type="button" onclick=goToIndex()>
             Volver a la portada
             </button>
@@ -51,5 +61,5 @@
 </div>
 {% endblock %}
 {% block javascript %}
-<script lang="javascript" src="{{ url_for('static', filename='js/utils.js') }}"></script> 
+<script src="{{ url_for('static', filename='js/utils.js') }}"></script> 
 {% endblock %}
