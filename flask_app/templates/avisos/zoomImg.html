@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %} Adopte hoy!! {% endblock %}
+{% block css %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static', filename='css/index.css')}}"
+/>
+{% endblock %}
+{% block content %}
+<body id="img_back">
+<div class="container" id="foto-btn-foto-container">
+    <div id="foto-container" >
+
+        {% if data_foto.cant_imgs > 1 %}
+        <button class="move_img_btn" type="button" onclick="goToImg('{{ data_foto.id_aviso }}','{{data_foto.id_img -1}}')">
+            Prev 
+        </button>
+        {% endif %}
+        
+        <img  id="img-zoom" src="/{{data_foto.ruta_archivo}}/medium/{{data_foto.nombre_archivo}}" alt="MascotaFoto">
+
+        {% if data_foto.cant_imgs > 1 %}
+        <button  class="move_img_btn" type="button" onclick="goToImg('{{ data_foto.id_aviso }}','{{data_foto.id_img +1}}')">
+            Next 
+        </button>
+        {% endif %}
+    </div>
+    <div class="container" id="btn-foto-container">
+
+        {% if data_foto.cant_imgs > 1 %}
+        <span class="counter"> {{data_foto.id_img+1}} / {{data_foto.cant_imgs}} </span>
+        {% endif %}
+
+        <button id="img-zoom-btn" class="boton" type="button" onclick="btnUnzoomImg('{{ data_foto.id_aviso }}')">
+            Cerrar 
+        </button>
+    </div>
+</div>
+</body>
+{% endblock %}
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/utils.js') }}"></script>
+{% endblock %}
