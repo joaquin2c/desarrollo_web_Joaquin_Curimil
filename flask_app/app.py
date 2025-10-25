@@ -1,5 +1,5 @@
-from flask import Flask, request, render_template, redirect, url_for, session
-from utils.validations import validate_aviso
+from flask import Flask, request, render_template, redirect, url_for, session, jsonify
+from utils.validations import validate_aviso, validate_comment
 from database import db, models
 from werkzeug.utils import secure_filename
 import hashlib
@@ -56,10 +56,8 @@ def post_aviso():
 
 
 def save_in_db(info_data):
-    print(info_data)
     id_aviso=db.create_aviso(info_data)
     for image in info_data["fotos"]:
-        print(image.filename)
         if image.filename:
         # 1. generate random name for img
             _filename = hashlib.sha256(
@@ -167,7 +165,7 @@ def aviso(id):
     total_fotos=len(info_fotos)
     nombre_archivo=info_fotos[0].nombre_archivo 
     ruta_archivo=info_fotos[0].ruta_archivo
-
+    session['page'] = 1
     data_aviso={
         "id":info.id,
         "fecha_ingreso":info.fecha_ingreso,
@@ -186,7 +184,7 @@ def aviso(id):
         "total_fotos":total_fotos,
         "ruta_archivo":ruta_archivo,
         "nombre_archivo":nombre_archivo
-    }
+    } 
     return render_template('avisos/aviso.html', data_aviso=data_aviso)
 
 
@@ -213,6 +211,65 @@ def fotos(id):
     }
 
     return render_template('avisos/zoomImg.html', data_foto=data_foto)
+
+@app.route("/get-comentarios/", methods=["GET"])
+def get_comentarios():
+    page_size=5
+    id_user=request.args.get('id')
+    page=request.args.get('page')
+    page_num=int(page)
+
+    comentarios,size_db=db.get_comments_ad(id_user,offset_value=page_size*(page_num-1),page_size=page_size)
+    if not comentarios:
+        return jsonify({"status": "ok", "data": []})
+    current_page=math.ceil(size_db/page_size)
+    all_info={"size_db":current_page,"page_num":page_num}
+    data_comentarios=[]
+    for comentario in comentarios:
+        data_comentarios.append({
+            "nombre":comentario.nombre,
+            "texto":comentario.texto,
+            "fecha":comentario.fecha.strftime("%H:%M %d-%m-%Y"),
+        })
+    all_info["comentarios"]=data_comentarios
+    return jsonify({"status": "ok", "data": all_info})
+
+@app.route("/get-fechas/", methods=["GET"])
+def get_fechas():
+    fechas=db.get_count_fechas()
+    if not fechas:
+        return jsonify({"status": "ok", "data": []})
+
+    return jsonify({"status": "ok", "data": fechas})
+
+@app.route("/get-tipos/", methods=["GET"])
+def get_tipos():
+    tipos=db.get_count_types()
+    if not tipos:
+        return jsonify({"status": "ok", "data": []})
+    return jsonify({"status": "ok", "data": tipos})
+
+
+@app.route("/get-tipos-mes/", methods=["GET"])
+def get_tipos_month():
+    tipos_month=db.get_count_types_by_month()
+    if not tipos_month:
+        return jsonify({"status": "ok", "data": []})
+    return jsonify({"status": "ok", "data": tipos_month})
+
+@app.route("/post-comentario/", methods=["POST"])
+def post_comentario():
+    comment_dict = request.get_json()
+    name=comment_dict["name"]
+    comment=comment_dict["comment"]
+    aviso_id=comment_dict["aviso_id"]
+    time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    error=validate_comment(name,comment,aviso_id)
+    if(error):
+        return jsonify({"valid": 0,"error":error})
+    else:
+        db.create_comentario(name,comment,time,aviso_id)
+        return jsonify({"valid": 1,"time":time})
 
 @app.route('/estadistica', methods=["GET"])
 def estadisticas():

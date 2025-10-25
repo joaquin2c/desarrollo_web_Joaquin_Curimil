@@ -10,7 +10,6 @@ class AvisoAdopcion(Base):
 
     id = Column(BigInteger, primary_key=True, autoincrement=True)
     fecha_ingreso = Column(DateTime, nullable=False)
-    #comunda_id = Column(Integer, nullable=False)
     comuna_id = Column(BigInteger, ForeignKey('comuna.id'), nullable=False)
     sector = Column(String(100))
     nombre = Column(String(200), nullable=False)
@@ -59,4 +58,14 @@ class ContactarPor(Base):
     id = Column(BigInteger, primary_key=True, autoincrement=True)
     nombre = Column(Enum('whatsapp','telegram','X','instagram','tiktok','otra'), nullable=False)
     identificador = Column(String(150), nullable=False)
+    aviso_id = Column(BigInteger, ForeignKey('aviso_adopcion.id'), nullable=False)
+
+
+class Comentario(Base):
+    __tablename__ = 'comentario'
+
+    id = Column(BigInteger, primary_key=True, autoincrement=True)
+    nombre = Column(String(80), nullable=False)
+    texto = Column(String(300), nullable=False)
+    fecha = Column(DateTime, nullable=False)
     aviso_id = Column(BigInteger, ForeignKey('aviso_adopcion.id'), nullable=False)

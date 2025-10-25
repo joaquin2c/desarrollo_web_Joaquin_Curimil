@@ -96,6 +96,7 @@ thead {
 #row-data-container {
     display: flex;
     justify-content: center;
+    margin: 1em 0em 5em 0em;
 }
 
 #navbar_row {
@@ -115,7 +116,9 @@ thead {
 .container {
     display : grid;
     justify-content: center;
-    align-items: center;    
+    align-items: center;  
+    height: auto;
+    margin: auto;
 }
 
 #foto-btn-foto-container {
@@ -225,4 +228,117 @@ thead {
   background-color: rgb(147, 131, 131);
   padding: .25em;
   cursor: pointer;
+}
+
+.comment-container {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+#new_comment-btn{
+  margin: 0em;
+}
+
+
+#comment-list{
+  display: flex;
+  justify-content: left;
+  width: 60%;
+}
+
+.error{
+  display: grid;
+  justify-content: center;
+  text-align: center;
+  background-color: rgb(255, 91, 91);
+  padding: 1em 0em;
+  margin: 1em 0em;
+  width: 40%;
+}
+
+.wait{
+  justify-content: center;
+  text-align: center;
+  padding: 1em 0em;
+  margin: 1em 0em;
+  background-color: yellow;
+  width: 40%;
+}
+
+
+.send{
+  justify-content: center;
+  text-align: center;
+  padding: 1em 0em;
+  margin: 1em 0em;
+  background-color: rgb(49, 177, 49);
+  width: 40%;
+}
+
+
+#comment-list ul {
+    padding: 0;
+    width:100%;
+    justify-content: left   ;
+}
+
+
+
+#comment-list li {
+    display:flex;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    list-style-type: none; 
+    background-color:rgb(233, 220, 220);  
+    width:100%;
+    padding: 1.2em 0em 1.2em 2em ;
+    margin: 0.5em 0em 0em 0em; 
+    border-radius: .8em;
+}
+
+
+#comment-list li div{
+    color:rgb(63, 60, 60)
+}
+
+.list-com {
+  word-break: break-all; 
+  font-size: medium;
+}
+
+.list-name {
+  font-weight: bold;
+  font-size: large;
+}
+
+.list-fecha {
+  font-size:small; 
+  margin: 0.2em 0em 1em 0em;
+}
+
+
+
+.botones-comment{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: 0em 0em 1em 0em;
+}
+
+
+.botones-comment .counter_list{
+    padding: 0em 0em;
+    margin: 0em 0em;
+}
+
+
+.botones-comment .move_img_btn{
+    
+    padding: .25em .5em;
+    margin: 0em 1em 0em 1em;
+    border: .1em solid rgb(98, 87, 87);
+    border-radius: 2em;
+    background-color: rgba(193, 175, 175, 0.239);
+    
 }
