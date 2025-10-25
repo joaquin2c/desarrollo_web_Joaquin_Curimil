@@ -111,3 +111,11 @@ def validateFoto(conf_img,required):
     if ftype_guess.mime not in ALLOWED_MIMETYPES:
         return False
     return True
+
+
+def validate_comment(name,comment,aviso_id):
+  error_msg=[]
+  if not validateText(name,3,80,True):error_msg.append("Error en el nombre")
+  if not validateText(comment,5,300,True):error_msg.append("Error en el comentario")
+  if not validateInt(aviso_id,1):error_msg.append("Error en el id de aviso")
+  return error_msg

@@ -10,42 +10,81 @@
 {% endblock %}
 {% block content %}  
     {% if data_aviso %}
-    <div id="row-data-container">
-        <div id="list_row">
-            <h1 class="intro">Información de adopción</h1>
-            <div class="tableBack">
-                <table id="info-adop">
-                    <tbody>
-                    <tr><td class="bold">Fecha publicación :</td> <td>{{data_aviso.fecha_ingreso}}</td></tr>
-                    <tr><td class="bold">Fecha entrega: </td> <td>{{data_aviso.fecha_entrega}} </td></tr>
-                    <tr><td class="bold">Comuna : </td> <td>{{data_aviso.comuna}}</td></tr>
-                    <tr><td class="bold">Sector : </td> <td>{{data_aviso.sector}}</td></tr>
-                    <tr><td class="bold">Cantidad tipo edad : </td> <td>{{data_aviso.cantidad}} {{data_aviso.tipo}} {{data_aviso.edad}} {{data_aviso.unidad_medida}}</td></tr>
-                    <tr><td class="bold">Nombre de contacto : </td> <td>{{data_aviso.nombre}}</td></tr>
-                    <tr><td class="bold">Email : </td> <td>{{data_aviso.email}}</td></tr>
-                    <tr><td class="bold">Celular : </td> <td>{{data_aviso.celular}}</td></tr>                    
-                    {% if data_aviso.contactos %}
-                        {% for contacto in data_aviso.contactos%}
-                            <tr><td class="bold">{{contacto.nombre}} :  </td> <td>{{contacto.identificador}}</td></tr>
-                        {% endfor%}
-                    {% endif %}
-                    <tr><td class="bold">Descripcion : </td> <td>{{data_aviso.descripcion}}</td></tr>
-                    <tr><td class="bold">Fotos : </td><td><img class="imgs-index" id="tot-foto" src="/{{data_aviso.ruta_archivo}}/mini/{{data_aviso.nombre_archivo}}" onclick="goToImg('{{ data_aviso.id }}','{{0}}')" alt="imgMascota">{% if data_aviso.total_fotos>1 %}<span id="extra_imgs" onclick="goToImg('{{ data_aviso.id }}','{{1}}')"> +{{data_aviso.total_fotos-1}} Fotos disponibles </span></td>{% endif %}</tr>
-                    </tbody>
-                </table>
+        <div id="row-data-container">
+            <div id="list_row">
+                <h1 class="intro">Información de adopción</h1>
+                <div class="tableBack">
+                    <table id="info-adop">
+                        <tbody>
+                        <tr><td class="bold">Fecha publicación :</td> <td>{{data_aviso.fecha_ingreso}}</td></tr>
+                        <tr><td class="bold">Fecha entrega: </td> <td>{{data_aviso.fecha_entrega}} </td></tr>
+                        <tr><td class="bold">Comuna : </td> <td>{{data_aviso.comuna}}</td></tr>
+                        <tr><td class="bold">Sector : </td> <td>{{data_aviso.sector}}</td></tr>
+                        <tr><td class="bold">Cantidad tipo edad : </td> <td>{{data_aviso.cantidad}} {{data_aviso.tipo}} {{data_aviso.edad}} {{data_aviso.unidad_medida}}</td></tr>
+                        <tr><td class="bold">Nombre de contacto : </td> <td>{{data_aviso.nombre}}</td></tr>
+                        <tr><td class="bold">Email : </td> <td>{{data_aviso.email}}</td></tr>
+                        <tr><td class="bold">Celular : </td> <td>{{data_aviso.celular}}</td></tr>                    
+                        {% if data_aviso.contactos %}
+                            {% for contacto in data_aviso.contactos%}
+                                <tr><td class="bold">{{contacto.nombre}} :  </td> <td>{{contacto.identificador}}</td></tr>
+                            {% endfor%}
+                        {% endif %}
+                        <tr><td class="bold">Descripcion : </td> <td>{{data_aviso.descripcion}}</td></tr>
+                        <tr><td class="bold">Fotos : </td><td><img class="imgs-index" id="tot-foto" src="/{{data_aviso.ruta_archivo}}/mini/{{data_aviso.nombre_archivo}}" onclick="goToImg('{{ data_aviso.id }}','{{0}}')" alt="imgMascota">{% if data_aviso.total_fotos>1 %}<span id="extra_imgs" onclick="goToImg('{{ data_aviso.id }}','{{1}}')"> +{{data_aviso.total_fotos-1}} Fotos disponibles </span></td>{% endif %}</tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
             </div>
-                
 
-
-        <div class="navbar" id="navbar_row">
-            <a class="navbar-page" href="/listado/">Volver a listado</a>
-            <a class="navbar-page" href="/">Volver a la portada</a>
         </div>
-    </div>
+                <h1 class="intro">Comentarios:</h1>
+                    
+                <div class="comment-container">
+                <div id="comment-list">
+                </div>
+                </div>
+                 <div id="botones-comment" class="botones-comment">
+                    <button class="move_img_btn" type="button" onclick="ChangePageComment(-1)">
+                    &lt
+                    </button>
+                        
+                    <div class="counter_list">  <div id="page-comment"></div>  </div>
+                    <button class="move_img_btn" type="button" onclick="ChangePageComment(1)">
+                    &gt
+                    </button>
+                </div>
 
+                
+                <div class="comment-container">
+                <span>Nombre:  </span>
+                <input name="new_comment_name" id="new_comment_name" minlength="3" maxlength="80" required>
+                </div>
+                <div class="comment-container">
+                <textarea name="new_comment" id="new_comment" rows="10" cols="50"></textarea>
+                </div>
+                <div class="comment-container">
+                <button class="botones" id="new_comment-btn" type="button">
+                Agregar nuevo Comentario
+                </button>
+                </div>
+                <div class="comment-container">
+                <div id="comment-msg-send">
+                </div>
+                </div>
+
+                    
+
+
+            <div class="navbar" id="navbar_row">
+                <a class="navbar-page" href="/listado/">Volver a listado</a>
+                <a class="navbar-page" href="/">Volver a la portada</a>
+            </div>
     {% endif %}
 {% endblock %}
 
 {% block javascript %}
 <script src="{{ url_for('static', filename='js/utils.js') }}"></script>
+<script src="{{ url_for('static', filename='js/comment.js') }}"></script>
 {% endblock %}
