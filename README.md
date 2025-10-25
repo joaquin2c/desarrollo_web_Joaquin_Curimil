@@ -18,4 +18,6 @@ Seguir estos pasos:
 
 ## Tarea 3
 
--En este caso el pre-procesos del conteo de fechas se hace desde el servidor, al ser un caso de prueba, pero presiento que en un caso real fallaria si hartos usuarios hacen la misma petición al mismo tiempo, por lo que tendría más sentido que el servidor cada cierto tiempo actualize un archivo json guardado en la carpeta de datos que contencga el conteo de avisos por día, por lo que el unico costo que realmente habría sería cargar el json y enviarlo al usuario.
+-En este caso el pre-procesos del conteo de fechas se hace desde el servidor, al ser un caso de prueba, pero presiento que en un caso real fallaria si hartos usuarios hacen la misma petición al mismo tiempo, por lo que tendría más sentido que el servidor cada cierto tiempo actualize un archivo json guardado en la carpeta de datos que contenga el conteo de avisos por día, por lo que el unico costo que realmente habría sería cargar el json y enviarlo al usuario.
+
+-Al usar el verificador w3 con los html *Highcharts* es el unico que obtiene problemas, pero estos errores no se pueden corregir al ser generado directamente por estre framework, por lo que siguiendo la recomendación del auxiliar se dejarán estos errores. 
