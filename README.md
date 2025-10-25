@@ -1,5 +1,6 @@
-# Tarea-2
-## Instrucciones
+# Instrucciones
+
+##Instrucciones de la Tarea 2
 
 Esta tarea se hizo pensando en que debia tener incluido todos los elementos basicos para ser probado, por lo que aparte de tener la pagina web se incluye imagenes y los datasets, no teniendo claro si es que se guardaron los datos dentros del dataset, pero de igual forma se incluye un archivo que los crea desde 0.
 
@@ -14,5 +15,7 @@ Seguir estos pasos:
 -Hay tres carpetas de imagenes dentro de upload, siendo las carpetas *mini* y *medium* las imagenes con el resize pedido de la tarea 1, mientras que en la carpeta *normal* se tienen imagenes normales que pueden ser usadas para crear un nuevo aviso desde la pagina web.
 
 -Al crear un nuevo aviso desde la pagina web se agregara: una columna con la información pertinente en la tabla aviso_adopcion, las diferentes formas de contactos en la tabla de contactar_por, los path de las fotos en la tabla foto, y las imagenes incluidas dentro de las carpetas "mini" y "medium", teniendo en cada carpeta el tamaño requerido.
+
+##Tarea 3
 
 -En este caso el pre-procesos del conteo de fechas se hace desde el servidor, al ser un caso de prueba, pero presiento que en un caso real fallaria si hartos usuarios hacen la misma petición al mismo tiempo, por lo que tendría más sentido que el servidor cada cierto tiempo actualize un archivo json guardado en la carpeta de datos que contencga el conteo de avisos por día, por lo que el unico costo que realmente habría sería cargar el json y enviarlo al usuario.
