@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <title>listado</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+  </head>
+
+  <body>
+
+    <section class="main-container">
+
+      <!-- Aviso List -->
+      <div id="title-container">
+        <h2>Listado</h2>
+      </div>
+      <div id="listaAvisos" style="display:none;">
+        <div id="tablaAvisos-container">
+          <table id="tablaAvisos">
+          </table>
+        </div>
+      </div>
+      <!-- Modal -->
+      <div class="modal" id="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Califique aviso <span id="id_aviso"></span></h2>
+          </div>
+          <div class="modal-body">
+            <div id="stars">
+              <span id="star1" class="fa fa-star"></span>
+              <span id="star2" class="fa fa-star"></span>
+              <span id="star3" class="fa fa-star"></span>
+              <span id="star4" class="fa fa-star"></span>
+              <span id="star5" class="fa fa-star"></span>  
+              <span id="star6" class="fa fa-star"></span>  
+              <span id="star7" class="fa fa-star"></span>  
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Scripts -->
+    <script th:src="@{/js/modal.js}"></script>
+    <script th:src="@{/js/avisos.js}"></script>
+  </body>
+</html>

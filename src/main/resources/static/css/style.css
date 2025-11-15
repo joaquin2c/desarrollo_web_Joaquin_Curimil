@@ -1,0 +1,137 @@
+table, th, td {
+    border:2px solid black;
+    border-collapse: collapse;
+}
+
+table{
+    align-items:center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+td ,th{
+    padding: 0.5em;
+    text-align: center;
+}
+
+#listaAvisos {
+    justify-content: center;
+    align-items: center;
+}
+
+#tablaAvisos-container{
+    justify-content: center;
+    align-items: center;
+}
+
+#title-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  width: min-content;
+  box-shadow: 0.175em 0.175em 0px 0px black;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: black;
+  float: right;
+  font-size: 52px;
+  font-weight: bold;
+}
+
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  text-align: center;
+}
+
+.modal-body {
+  padding: 2px 16px;
+  width: min-content;
+}
+
+#stars{
+    display: flex;
+    font-size: 36px;
+    margin:0px 15px 15px 15px;
+    color:rgba(58, 58, 58, 0.25);
+}
+.fa.fa-star{
+    margin:5px;
+}
+
+.inc-nota{
+  background-color: rgba(97, 232, 1, 1);
+  animation-name: animate-inc-nota;
+  animation-duration: 4s;
+  animation-fill-mode: forwards;
+}
+
+.dec-nota{
+  background-color: rgb(243, 55, 55);
+  animation-name: animate-dec-nota;
+  animation-duration: 4s;
+  animation-fill-mode: forwards;
+}
+
+.stay-nota{
+  background-color: rgb(255, 255, 0);
+  animation-name: animate-stay-nota;
+  animation-duration: 4s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes animate-inc-nota {
+  from {background-color:rgba(97, 232, 1, 1)}
+  to {background-color:rgba(97, 232, 1, 0)}
+}
+
+@keyframes animate-dec-nota {
+  from {background-color:rgba(243, 55, 55,1)}
+  to {background-color:rgba(243, 55, 55,0)}
+}
+
+
+@keyframes animate-stay-nota {
+  from {background-color:rgba(255, 255, 0,1)}
+  to {background-color:rgba(255, 255, 0,0)}
+}
