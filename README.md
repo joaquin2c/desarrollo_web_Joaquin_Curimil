@@ -21,3 +21,17 @@ Seguir estos pasos:
 -En este caso el pre-procesos del conteo de fechas se hace desde el servidor, al ser un caso de prueba, pero presiento que en un caso real fallaria si hartos usuarios hacen la misma petición al mismo tiempo, por lo que tendría más sentido que el servidor cada cierto tiempo actualize un archivo json guardado en la carpeta de datos que contenga el conteo de avisos por día, por lo que el unico costo que realmente habría sería cargar el json y enviarlo al usuario.
 
 -Al usar el verificador w3 con los html *Highcharts* es el unico que obtiene problemas, pero estos errores no se pueden corregir al ser generado directamente por estre framework, por lo que siguiendo la recomendación del auxiliar se dejarán estos errores. 
+
+## Tarea 4
+
+-**Al ser diferente a las tareas previas solo se modifica en su rama y no se hace merge con master** 
+
+-Realizado con Java version 21.
+
+-Se necesita al menos tres tablas en el database tarea2: aviso_adopcion, comuna y nota.
+
+-La puntuación se hace mediante las estrellas, de 1 estrella a 7 estrellas (Nota de 1 a 7).
+
+-En caso de tener una tabla lista usar esa, la entregada es en caso de no haber alguna previa.
+
+-Las modificaciones de las notas deberían notificarse con colores, verde si es que sube con respecto al promedio anterior y rojo en caso contrario.
