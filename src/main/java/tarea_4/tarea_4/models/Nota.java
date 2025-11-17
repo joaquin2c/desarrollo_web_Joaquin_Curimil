@@ -4,10 +4,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 
-import java.time.LocalDateTime;
-
-import org.springframework.web.multipart.MultipartFile;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -61,7 +57,9 @@ public class Nota {
     }
     
     public static Boolean validateNota(Integer nota) {
-        // Ejercicio: implementar validacion de confesiones :)
-        return true;
+        if(1<=nota & nota<=7 )
+            return true;
+        else
+            return false;
     }
 }
